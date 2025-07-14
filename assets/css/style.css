@@ -1,0 +1,46 @@
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif, 'EB Garamond';
+  background-color: #ffffff;
+  color: #123f49;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #0f2d36;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+.navbar .logo img {
+  height: 40px;
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.navbar .nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+.hero {
+  height: 90vh;
+  background: url('../images/hero.jpg') center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 3em;
+  margin: 0;
+}
+.hero p {
+  font-size: 1.3em;
+  margin-top: 10px;
+}
