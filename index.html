@@ -4,23 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ECE Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
   <nav class="navbar">
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="ECE Lab Logo">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="ECE Lab Logo">
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
     </div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#facilities">Facilities</a></li>
-      <li><a href="#members">Members</a></li>
-      <li><a href="#more">More</a></li>
+
+   <ul id="navLinks" class="nav-links">
+     <li><a href="#home">Home</a></li>
+     <li><a href="https://example.com1" target="#research" rel="noopener">Research</a></li>
+     <li><a href="https://example.com2" target="#publications" rel="noopener">Publications</a></li>
+     <li><a href="#facilities">Facilities</a></li>
+     <li><a href="#members">Members</a></li>
+     <li><a href="#more">⋯</a></li>
     </ul>
   </nav>
 </header>
@@ -32,11 +39,71 @@
   </div>
 </section>
 
-<section id="research"><h2>Research</h2></section>
+<section id="research" class="tab-section">
+  <h2>Research</h2></section>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab1">LAB</button>
+    <button class="tab-btn" data-tab="tab2">아열대</button>
+    <button class="tab-btn" data-tab="tab3">외해양식</button>
+  </div>
+  <div class="tab-content-container">
+    <div class="tab-content active" id="tab1">
+      <p>LAB 관련 연구 소개입니다. (샘플 텍스트이에용)</p>
+    </div>
+    <div class="tab-content" id="tab2">
+      <p>아열대 해양환경 적응 시나리오 개발 대응책 및 활용 체계 구춱 연구 소개입니다. (샘플 텍스트이에용용)</p>
+    </div>
+    <div class="tab-content" id="tab3">
+      <p>외해양식 관련 연구 소개입니다. (샘플 텍스트이에용용용)</p>
+    </div>
+  </div>
 <section id="publications"><h2>Publications</h2></section>
 <section id="facilities"><h2>Facilities</h2></section>
 <section id="members"><h2>Members</h2></section>
-<section id="more"><h2>More</h2></section>
+<section id="more"><h2>⋯</h2></section>
 
 </body>
 </html>
+<script>
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('show');
+    document.body.style.overflow = navLinks.classList.contains('show') ? 'hidden' : 'auto';
+  }
+  document.addEventListener('click', function (e) {
+  const menu = document.getElementById('navLinks');
+  const button = document.querySelector('.hamburger');
+
+  if (!menu.contains(e.target) && !button.contains(e.target)) {
+    menu.classList.remove('show');
+    document.body.style.overflow = 'auto';
+  }
+});
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 탭 버튼 초기화
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // 탭 콘텐츠 초기화
+      const target = btn.getAttribute('data-tab');
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+        if (content.id === target) {
+          content.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
